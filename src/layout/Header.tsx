@@ -1,17 +1,16 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCtf } from '@/context';
+import { Progress } from '@/components';
 import { VscSettings } from 'react-icons/vsc';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import { HiDocumentText } from 'react-icons/hi';
-import { Progress } from '@/components';
 
 export const Header = () => {
   const { isAdmin, ctfState, ctfConfig } = useCtf();
 
   return (
     <header className='h-20 fixed flex w-full items-center bg-cPrimary shadow-2xl drop-shadow-2xl z-10'>
-      <div className='w-full h-16 fixed px-6 mx-auto font-Jost flex flex-row justify-between items-center z-40 pr-4 gap-32'>
+      <div className='w-full h-16 fixed px-6 mx-auto font-Jost flex flex-row justify-between items-center z-40 pr-4 gap-16 xl:gap-32'>
         <div className='flex justify-left items-center'>
           <div className='flex h-16 items-center gap-2'>
             <Link to='/' className='contents'>

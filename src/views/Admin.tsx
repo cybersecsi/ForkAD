@@ -20,7 +20,7 @@ export const Admin = () => {
             </button>
           </Link>
         </div>
-        <div className='grid grid-cols-6 gap-4 mt-4'>
+        <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 mt-4'>
           {ctfTeams.map((team: ICtfTeam, key: number) => {
             return (
               <div
@@ -51,7 +51,7 @@ export const Admin = () => {
             </button>
           </Link>
         </div>
-        <div className='grid grid-cols-6 gap-4 mt-4'>
+        <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-6 gap-4 mt-4'>
           {ctfTasks.map((task: ICtfTask, key: number) => {
             return (
               <div
