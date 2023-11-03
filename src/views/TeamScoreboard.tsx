@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PublicRESTManagerInstance } from '@/rest';
 import { rangeWithoutZero, sleep } from '@/utils/helpers';
 import { Legend, Loading } from '@/components';
-import { IFullCtfTeamTask } from '@/types/IForcad';
+import { IFullCtfTeamTask } from '@/types';
 import { numericRegex } from '@/utils/regex';
 
 export const TeamScoreboard = () => {
@@ -63,13 +63,20 @@ export const TeamScoreboard = () => {
     return score;
   };
 
+  const getRoundsList = () => {
+    const roundsList = [
+      ...new Set(Object.values(teamTasks).map((v: IFullCtfTeamTask) => parseInt(v.round))),
+    ].sort((a: number, b: number) => b - a);
+    return roundsList;
+  };
+
   if (isLoading || !team) {
     return <Loading blur={true} />;
   }
 
   return (
     <>
-      <h1 className='text-center text-cTertiary text-4xl mb-6'>
+      <h1 className='text-cTertiary text-4xl mb-6'>
         Team <b>{team.name}</b> - IP Address <b>{team.ip}</b>
       </h1>
       <Legend />
@@ -88,37 +95,35 @@ export const TeamScoreboard = () => {
             </tr>
           </thead>
           <tbody>
-            {rangeWithoutZero(ctfState.round)
-              .sort((a: number, b: number) => b - a)
-              .map((round: number) => {
-                return (
-                  <tr key={round}>
-                    <td>{round}</td>
-                    <td>{getRoundScore(round).toFixed(2)}</td>
-                    {Object.values(teamTasks)
-                      .filter((teamTask: IFullCtfTeamTask) => teamTask.round === round.toString())
-                      .map((teamTask: IFullCtfTeamTask, key: number) => {
-                        return (
-                          <td
-                            key={key}
-                            className={`${STATUS_CONFIG[teamTask.status].bg} text-slate-800`}
-                          >
-                            <p>
-                              <b>SLA:</b>{' '}
-                              {((teamTask.checks_passed * 100) / teamTask.checks).toFixed(2)}%
-                            </p>
-                            <p>
-                              <b>Service Points:</b> {teamTask.score}
-                            </p>
-                            <p>
-                              <BsFlagFill className='inline' /> +{teamTask.stolen}/-{teamTask.lost}
-                            </p>
-                          </td>
-                        );
-                      })}
-                  </tr>
-                );
-              })}
+            {getRoundsList().map((round: number) => {
+              return (
+                <tr key={round}>
+                  <td>{round}</td>
+                  <td>{getRoundScore(round).toFixed(2)}</td>
+                  {Object.values(teamTasks)
+                    .filter((teamTask: IFullCtfTeamTask) => teamTask.round === round.toString())
+                    .map((teamTask: IFullCtfTeamTask, key: number) => {
+                      return (
+                        <td
+                          key={key}
+                          className={`${STATUS_CONFIG[teamTask.status].bg} text-slate-800`}
+                        >
+                          <p>
+                            <b>SLA:</b>{' '}
+                            {((teamTask.checks_passed * 100) / teamTask.checks).toFixed(2)}%
+                          </p>
+                          <p>
+                            <b>Service Points:</b> {teamTask.score}
+                          </p>
+                          <p>
+                            <BsFlagFill className='inline' /> +{teamTask.stolen}/-{teamTask.lost}
+                          </p>
+                        </td>
+                      );
+                    })}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

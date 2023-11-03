@@ -6,7 +6,7 @@ import { BsFlagFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 export const Scoreboard = () => {
-  const { ctfState, ctfTasks, ctfTeams } = useCtf();
+  const { ctfState, ctfTasks, ctfTeams, isAdmin } = useCtf();
 
   const getTeamScore = (teamId: number) => {
     const currentTeamTasks = ctfState.team_tasks.filter(
@@ -79,8 +79,19 @@ export const Scoreboard = () => {
                         return (
                           <td
                             key={key}
-                            className={`${STATUS_CONFIG[teamTask.status].bg} text-slate-800`}
+                            className={`${
+                              STATUS_CONFIG[teamTask.status].bg
+                            } text-slate-800 relative`}
                           >
+                            {isAdmin && (
+                              <Link
+                                to={`/admin/team-task-log/team/${teamTask.team_id}/task/${teamTask.task_id}`}
+                              >
+                                <button className='absolute top-2 right-2 bg-cPrimary hover:bg-cSecondary transition-all duration-300 text-slate-50 rounded-md p-1'>
+                                  Team Task Logs
+                                </button>
+                              </Link>
+                            )}
                             <p>
                               <b>SLA:</b>{' '}
                               {((teamTask.checks_passed * 100) / teamTask.checks).toFixed(2)}%

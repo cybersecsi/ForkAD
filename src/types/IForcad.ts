@@ -80,3 +80,20 @@ export interface IAdminCtfTask {
   puts: number;
   places: number;
 }
+
+export interface IAdminTeamTaskLog {
+  id: number;
+  checks: number;
+  checks_passed: number;
+  command: string;
+  private_message: string;
+  public_message: string;
+  round: number;
+  score: number;
+  status: number;
+  lost: number;
+  stolen: number;
+  task_id: number;
+  team_id: number;
+  ts: number;
+}

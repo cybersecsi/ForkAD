@@ -7,5 +7,9 @@ export type {
   ICtfTeamTask,
   ICtfScoreboardState,
   ICtfFlagStolen,
+  IAdminCtfTask,
+  IAdminCtfTeam,
+  IFullCtfTeamTask,
+  IAdminTeamTaskLog,
 } from '@/types/IForcad';
 export type { ILoginReq } from '@/types/IApi';

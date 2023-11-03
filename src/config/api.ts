@@ -12,5 +12,6 @@ export const API_CONFIG: IApiConfig = {
     STATUS: '/admin/status/',
     TEAMS: '/admin/teams/',
     TASKS: '/admin/tasks/',
+    TEAMTASKS: '/admin/teamtasks/',
   },
 };

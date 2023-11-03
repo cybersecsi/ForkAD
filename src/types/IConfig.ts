@@ -14,6 +14,7 @@ export interface IApiConfig {
     STATUS: string;
     TEAMS: string;
     TASKS: string;
+    TEAMTASKS: string;
   };
 }
 

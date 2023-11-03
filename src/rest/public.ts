@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { http } from '@/utils/axios';
 import { ICtfConfig, ICtfTask, ICtfTeam, ILoginReq } from '@/types';
 import { API_CONFIG } from '@/config';
-import { IFullCtfTeamTask } from '@/types/IForcad';
+import { IFullCtfTeamTask } from '@/types';
 
 class PublicRESTManager {
   async getConfig(): Promise<AxiosResponse<ICtfConfig>> {

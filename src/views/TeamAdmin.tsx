@@ -1,6 +1,6 @@
 import { Loading } from '@/components';
 import { AdminRESTManagerInstance } from '@/rest';
-import { IAdminCtfTeam } from '@/types/IForcad';
+import { IAdminCtfTeam } from '@/types';
 import { sleep } from '@/utils/helpers';
 import { numericRegex } from '@/utils/regex';
 import { useEffect, useState } from 'react';

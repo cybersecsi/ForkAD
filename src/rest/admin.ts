@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios';
 import { cookieHttp } from '@/utils/axios';
 import { API_CONFIG } from '@/config';
-import { IAdminCtfTask, IAdminCtfTeam } from '@/types/IForcad';
+import { IAdminCtfTask, IAdminCtfTeam, IAdminTeamTaskLog } from '@/types';
 
 class AdminRESTManager {
   async getStatus(): Promise<AxiosResponse> {
@@ -41,6 +41,16 @@ class AdminRESTManager {
     const res = await cookieHttp().put<IAdminCtfTask>(
       `${API_CONFIG.ADMIN_ROUTES.TASKS}${taskId}/`,
       data,
+    );
+    return res;
+  }
+
+  async getTeamTaskLogs(
+    teamId: number,
+    taskId: number,
+  ): Promise<AxiosResponse<IAdminTeamTaskLog[]>> {
+    const res = await cookieHttp().get<IAdminTeamTaskLog[]>(
+      `${API_CONFIG.ADMIN_ROUTES.TEAMTASKS}/?team_id=${teamId}&task_id=${taskId}`,
     );
     return res;
   }

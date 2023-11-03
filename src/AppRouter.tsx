@@ -12,7 +12,7 @@ import {
 } from '@/views';
 import { ADMIN_REACT_ROUTES, PUBLIC_REACT_ROUTES } from '@/config';
 import { removeSlash } from '@/utils/helpers';
-import { AdminRESTManagerInstance } from './rest';
+import { AdminRESTManagerInstance } from '@/rest';
 import { useCtf } from '@/context';
 import { Loading } from '@/components';
 
