@@ -29,6 +29,11 @@
     @apply w-[calc(100vw-20rem)] ml-80 flex flex-auto p-8 flex-col font-Jost text-slate-300;
   }
 
+  .mini-container {
+    @apply container;
+    @apply max-w-5xl px-2;
+  }
+
   .custom-textfield {
     @apply h-12 bg-gray-50 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight;
     @apply transition-all duration-300 border-gray-300 tracking-wide font-light text-sm placeholder-gray-400 bg-gray-50 focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-blue-500 focus:ring-blue-500/20;

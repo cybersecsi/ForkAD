@@ -13,6 +13,7 @@ interface IAdminRoutes extends IGenericReactRoute {
 interface IPublicRoutes extends IGenericReactRoute {
   TEAM_ROUTE: string;
   LOGIN_ROUTE: string;
+  RULES_ROUTE: string;
 }
 
 export const ADMIN_REACT_ROUTES: IAdminRoutes = {
@@ -28,4 +29,5 @@ export const PUBLIC_REACT_ROUTES: IPublicRoutes = {
   BASE_ROUTE: '/',
   TEAM_ROUTE: '/team',
   LOGIN_ROUTE: '/login',
+  RULES_ROUTE: '/rules',
 };

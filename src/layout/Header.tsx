@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useCtf } from '@/context';
 import { VscSettings } from 'react-icons/vsc';
 import { RiLoginBoxFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
-import Tippy from '@tippyjs/react';
-import { useCtf } from '@/context';
-import { useEffect, useState } from 'react';
+import { HiDocumentText } from 'react-icons/hi';
 
 export const Header = () => {
   const { isAdmin, ctfState, ctfConfig } = useCtf();
@@ -28,9 +28,7 @@ export const Header = () => {
         <div className='flex justify-left items-center'>
           <div className='flex h-16 items-center gap-2'>
             <Link to='/' className='contents'>
-              <Tippy content='A/D CTF'>
-                <h1 className='logo text-cTertiary text-4xl'>ForkAD</h1>
-              </Tippy>
+              <h1 className='logo text-cTertiary text-4xl'>ForkAD</h1>
             </Link>
           </div>
         </div>
@@ -42,28 +40,32 @@ export const Header = () => {
         ></progress>
 
         <div className='flex gap-4 items-center justify-center'>
+          {/* Rules */}
+          <Link to='/rules'>
+            <div className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
+              <HiDocumentText size={24} className='text-slate-50' />
+              <span className='text-md font-bold text-slate-50'>Rules</span>
+            </div>
+          </Link>
+
           {isAdmin ? (
             <>
-              {/* Username */}
+              {/* Admin */}
               <Link to='/admin'>
-                <Tippy content='Admin'>
-                  <div className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
-                    <VscSettings size={24} className='text-slate-50' />
-                    <span className='text-md font-bold text-slate-50'>Admin</span>
-                  </div>
-                </Tippy>
+                <div className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
+                  <VscSettings size={24} className='text-slate-50' />
+                  <span className='text-md font-bold text-slate-50'>Admin</span>
+                </div>
               </Link>
             </>
           ) : (
             <>
-              {/* Username */}
+              {/* Login */}
               <Link to='/login'>
-                <Tippy content='Login'>
-                  <button className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
-                    <RiLoginBoxFill size={24} className='text-slate-50' />
-                    <span className='text-md font-bold text-slate-50'>Login</span>
-                  </button>
-                </Tippy>
+                <button className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
+                  <RiLoginBoxFill size={24} className='text-slate-50' />
+                  <span className='text-md font-bold text-slate-50'>Login</span>
+                </button>
               </Link>
             </>
           )}

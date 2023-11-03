@@ -17,7 +17,7 @@ Follow these simple steps to get ForkAD up and running instead of the default UI
 
 1. Clone this repository **inside** the ForcAD folder
 2. Build the ForkAD frontend (``cd ForkAD && yarn && yarn build``)
-3. Overvwrite the default frontend (``cd .. && rm -rf front && mv ForkAD fron``)
+3. Overvwrite the default frontend (``cd .. && rm -rf front && mv ForkAD front``)
 4. Rebuild the ForcAD containers
 
 ## Contribution 🤝

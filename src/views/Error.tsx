@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
-import NoMatchImg from '@/assets/404.png';
+import ErrorImg from '@/assets/error.png';
 
-export const NoMatch = () => {
+export const Error = () => {
   return (
     <div className='m-auto'>
       <div className='inset-0 text-center flex flex-col justify-center p-8'>
         <div className='flex flex-col items-center'>
-          <img src={NoMatchImg} className='w-72 h-72 mb-4' />
+          <img src={ErrorImg} className='w-64 h-64 mb-4' />
+          <h3 className='text-cTertiary text-5xl font-bold py-4'>Error occurred.</h3>
           <h4>Check the URL in the address bar or go back to the homepage.</h4>
           <Link to={'/'}>
             <button className='rounded bg-cTertiary p-3 mt-4 hover:bg-cQuaternary transition-all duration-300 text-cPrimary'>

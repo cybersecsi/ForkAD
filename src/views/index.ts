@@ -5,4 +5,6 @@ export { TaskAdmin } from '@/views/TaskAdmin';
 export { TeamAdmin } from '@/views/TeamAdmin';
 export { TeamScoreboard } from '@/views/TeamScoreboard';
 export { TeamTaskLog } from '@/views/TeamTaskLog';
+export { Rules } from '@/views/Rules';
 export { NoMatch } from '@/views/NoMatch';
+export { Error } from '@/views/Error';

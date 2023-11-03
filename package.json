@@ -15,26 +15,16 @@
     "format": "prettier src --check --write && eslint src --fix"
   },
   "dependencies": {
-    "@tippyjs/react": "^4.2.6",
-    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
-    "chart.js": "^4.2.1",
-    "csstype": "^3.1.1",
     "daisyui": "^3.9.4",
-    "date-fns": "^2.30.0",
-    "dayjs": "^1.11.7",
-    "query-string": "^8.1.0",
     "react": "^18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-color": "^2.19.3",
-    "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
     "react-hook-form": "^7.44.2",
     "react-hot-toast": "^2.3.0",
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.4.3",
-    "socket.io-client": "^4.7.2",
-    "tippy.js": "^6.3.7"
+    "socket.io-client": "^4.7.2"
   },
   "devDependencies": {
     "@types/node": "^18.7.14",

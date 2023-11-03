@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet, redirect, RouteObject } from 'react-router-dom';
-import { Header, Content, Footer } from '@/layout';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Header, Content } from '@/layout';
 import {
   Login,
   Scoreboard,
@@ -9,6 +10,8 @@ import {
   TeamScoreboard,
   TeamTaskLog,
   NoMatch,
+  Error,
+  Rules,
 } from '@/views';
 import { ADMIN_REACT_ROUTES, PUBLIC_REACT_ROUTES } from '@/config';
 import { removeSlash } from '@/utils/helpers';
@@ -34,11 +37,7 @@ const routeLoader = async (redirectEndpoint: string) => {
 };
 
 const NoMatchElement = () => {
-  return (
-    <div className='m-auto'>
-      <NoMatch />
-    </div>
-  );
+  return <NoMatch />;
 };
 
 const DefaultLayout = () => {
@@ -49,13 +48,12 @@ const DefaultLayout = () => {
   }
 
   return (
-    <>
+    <ErrorBoundary fallback={<Error />}>
       <Header />
       <Content>
         <Outlet />
-        <Footer />
       </Content>
-    </>
+    </ErrorBoundary>
   );
 };
 
@@ -70,6 +68,10 @@ const PublicRouteObjects: RouteObject[] = [
       {
         path: removeSlash(`${PUBLIC_REACT_ROUTES.TEAM_ROUTE}/:teamId`),
         element: <TeamScoreboard />,
+      },
+      {
+        path: removeSlash(PUBLIC_REACT_ROUTES.RULES_ROUTE),
+        element: <Rules />,
       },
       {
         path: removeSlash(PUBLIC_REACT_ROUTES.LOGIN_ROUTE),
