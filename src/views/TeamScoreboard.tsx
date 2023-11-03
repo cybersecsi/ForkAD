@@ -6,13 +6,13 @@ import { useCtf } from '@/context';
 import { ICtfTask, ICtfTeam, ICtfTeamTask } from '@/types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PublicRESTManagerInstance } from '@/rest';
-import { rangeWithoutZero, sleep } from '@/utils/helpers';
+import { sleep } from '@/utils/helpers';
 import { Legend, Loading } from '@/components';
 import { IFullCtfTeamTask } from '@/types';
 import { numericRegex } from '@/utils/regex';
 
 export const TeamScoreboard = () => {
-  const { ctfTasks, ctfTeams, ctfState } = useCtf();
+  const { ctfTasks, ctfTeams } = useCtf();
   const [team, setTeam] = useState<ICtfTeam>();
   const [teamTasks, setTeamTasks] = useState<IFullCtfTeamTask[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);

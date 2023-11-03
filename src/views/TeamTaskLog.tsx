@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { BsFlagFill } from 'react-icons/bs';
 import { STATUS_CONFIG } from '@/config';
 import { useCtf } from '@/context';
-import { IAdminTeamTaskLog, ICtfTask, ICtfTeam, ICtfTeamTask } from '@/types';
+import { IAdminTeamTaskLog, ICtfTask, ICtfTeam } from '@/types';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AdminRESTManagerInstance, PublicRESTManagerInstance } from '@/rest';
-import { rangeWithoutZero, sleep } from '@/utils/helpers';
+import { AdminRESTManagerInstance } from '@/rest';
+import { sleep } from '@/utils/helpers';
 import { Legend, Loading } from '@/components';
-import { IFullCtfTeamTask } from '@/types';
 import { numericRegex } from '@/utils/regex';
 
 export const TeamTaskLog = () => {
-  const { ctfTasks, ctfTeams, ctfState } = useCtf();
+  const { ctfTasks, ctfTeams } = useCtf();
   const [team, setTeam] = useState<ICtfTeam>();
   const [task, setTask] = useState<ICtfTask>();
   const [teamTaskLogs, setTeamTaskLogs] = useState<IAdminTeamTaskLog[]>([]);
