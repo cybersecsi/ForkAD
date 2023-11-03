@@ -55,13 +55,13 @@ export const Login = () => {
           <div className='card bg-white shadow-xl w-full mt-8 p-8'>
             <form className='grid grid-cols-1 gap-5' onSubmit={loginForm.handleSubmit(login)}>
               <input
-                className='h-12 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                className='h-12 bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                 type='text'
                 placeholder='Username'
                 {...loginForm.register('username', { required: true })}
               />
               <PasswordInput
-                className='h-12 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                className='h-12 bg-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                 type='password'
                 placeholder='Password'
                 register={loginForm.register('password', { required: true })}
