@@ -22,7 +22,7 @@
   }
 
   .sidebar {
-    @apply bg-cSecondary h-[calc(100vh-5rem)] fixed overflow-y-auto overflow-x-hidden p-4 transition-all duration-300;
+    @apply hidden lg:block bg-cSecondary h-[calc(100vh-5rem)] fixed overflow-y-auto overflow-x-hidden p-4 transition-all duration-300;
   }
 
   .sidebar-open {
@@ -34,15 +34,23 @@
   }
 
   .workspace {
-    @apply flex flex-auto p-8 flex-col font-Jost text-slate-300;
+    @apply w-screen flex flex-auto p-8 flex-col font-Jost text-slate-300 transition-all duration-300;
   }
 
   .workspace-base {
-    @apply w-[calc(100vw-20rem)] ml-80;
+    @apply lg:w-[calc(100vw-20rem)] lg:ml-80;
   }
 
   .workspace-full {
-    @apply w-[calc(100vw-3rem)] ml-[3rem];
+    @apply lg:w-[calc(100vw-3rem)] lg:ml-[3rem];
+  }
+
+  .overlay {
+    @apply fixed bg-black w-screen h-screen top-0 z-[999] opacity-80;
+  }
+
+  .custom-drawer {
+    @apply bg-cPrimary w-10/12 fixed h-screen top-0 left-0 z-[999];
   }
 
   .mini-container {
