@@ -22,11 +22,27 @@
   }
 
   .sidebar {
-    @apply w-80 bg-cSecondary h-[calc(100vh-5rem)] fixed overflow-y-auto overflow-x-hidden p-4;
+    @apply bg-cSecondary h-[calc(100vh-5rem)] fixed overflow-y-auto overflow-x-hidden p-4 transition-all duration-300;
+  }
+
+  .sidebar-open {
+    @apply w-80;
+  }
+
+  .sidebar-closed {
+    @apply w-12;
   }
 
   .workspace {
-    @apply w-[calc(100vw-20rem)] ml-80 flex flex-auto p-8 flex-col font-Jost text-slate-300;
+    @apply flex flex-auto p-8 flex-col font-Jost text-slate-300;
+  }
+
+  .workspace-base {
+    @apply w-[calc(100vw-20rem)] ml-80;
+  }
+
+  .workspace-full {
+    @apply w-[calc(100vw-3rem)] ml-[3rem];
   }
 
   .mini-container {

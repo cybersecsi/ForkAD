@@ -1,13 +1,15 @@
 import { AppRouter } from '@/AppRouter';
 import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { CtfProvider } from '@/context';
+import { CtfProvider, UIProvider } from '@/context';
 
 export const App = () => {
   return (
     <CtfProvider>
-      <RouterProvider router={AppRouter} />
-      <Toaster position='bottom-left' />
+      <UIProvider>
+        <RouterProvider router={AppRouter} />
+        <Toaster position='bottom-left' />
+      </UIProvider>
     </CtfProvider>
   );
 };
