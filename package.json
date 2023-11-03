@@ -1,4 +1,63 @@
 {
-  "name": "ui",
+  "name": "forkad",
+  "author": "Angelo Delicato <angelo.delicato@secsi.io>",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "prettier": "prettier src --check",
+    "prettier:fix": "prettier src --check --write",
+    "format": "prettier src --check --write && eslint src --fix"
+  },
+  "dependencies": {
+    "@uidotdev/usehooks": "^2.4.1",
+    "axios": "^0.27.2",
+    "daisyui": "^3.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
+    "react-hook-form": "^7.44.2",
+    "react-hot-toast": "^2.3.0",
+    "react-icons": "^4.9.0",
+    "react-router-dom": "^6.4.3",
+    "socket.io-client": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@types/react": "^18.0.17",
+    "@types/react-color": "^3.0.6",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "lint-staged": "^13.1.2",
+    "postcss": "^8.4.16",
+    "prettier": "^2.8.4",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7",
+    "vite-plugin-svgr": "^4.1.0",
+    "vite-tsconfig-paths": "^3.5.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx, jsx}": [
+      "eslint --fix"
+    ],
+    "*.{json,md,html,js,jsx,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
   "packageManager": "yarn@4.0.1"
 }

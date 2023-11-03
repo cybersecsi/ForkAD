@@ -11,3 +11,9 @@
 
 #!.yarn/cache
 .pnp.*
+
+.DS_Store
+node_modules
+.env.development
+.env.production
+dist

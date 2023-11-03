@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply overflow-x-hidden scroll-smooth min-h-screen bg-cPrimary text-slate-300 font-Jost;
+  }
+
+  #root {
+    @apply min-h-screen flex;
+  }
+}
+
+@layer components {
+  .logo {
+    @apply font-Belanosima;
+  }
+
+  .sidebar {
+    @apply hidden lg:block bg-cSecondary h-[calc(100vh-5rem)] fixed overflow-y-auto overflow-x-hidden p-4 transition-all duration-300;
+  }
+
+  .sidebar-open {
+    @apply w-80;
+  }
+
+  .sidebar-closed {
+    @apply w-12;
+  }
+
+  .workspace {
+    @apply w-screen flex flex-auto p-8 flex-col font-Jost text-slate-300 transition-all duration-300;
+  }
+
+  .workspace-base {
+    @apply lg:w-[calc(100vw-20rem)] lg:ml-80;
+  }
+
+  .workspace-full {
+    @apply lg:w-[calc(100vw-3rem)] lg:ml-[3rem];
+  }
+
+  .overlay {
+    @apply fixed bg-black w-screen h-screen top-0 z-[999] opacity-80;
+  }
+
+  .custom-drawer {
+    @apply bg-cPrimary w-10/12 fixed h-screen top-0 left-0 z-[999];
+  }
+
+  .mini-container {
+    @apply container;
+    @apply max-w-5xl px-2;
+  }
+
+  .custom-textfield {
+    @apply h-12 bg-gray-50 shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight;
+    @apply transition-all duration-300 border-gray-300 tracking-wide font-light text-sm placeholder-gray-400 bg-gray-50 focus:ring disabled:opacity-40 disabled:cursor-not-allowed focus:border-blue-500 focus:ring-blue-500/20;
+  }
+
+  .custom-textfield:focus {
+    @apply outline-none;
+  }
+
+  .custom-input-checkbox {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2;
+  }
+}
