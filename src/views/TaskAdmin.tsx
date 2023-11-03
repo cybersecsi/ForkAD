@@ -71,9 +71,10 @@ export const TaskAdmin = () => {
       }
       await sleep(500);
       const toastMsg = isEditMode ? 'Task correctly updated' : 'Task correctly created';
-      await loadTask();
       setIsLoading(false);
       toast.success(toastMsg);
+      await sleep(1000);
+      navigate('/admin');
     } catch {
       toast.error('Error while updating task');
       setIsLoading(false);
