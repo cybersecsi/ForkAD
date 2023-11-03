@@ -28,7 +28,7 @@ export const Header = () => {
           <Link to='/rules'>
             <div className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
               <HiDocumentText size={24} className='text-slate-50' />
-              <span className='text-md font-bold text-slate-50'>Rules</span>
+              <span className='hidden lg:block text-md font-bold text-slate-50'>Rules</span>
             </div>
           </Link>
 
@@ -38,7 +38,7 @@ export const Header = () => {
               <Link to='/admin'>
                 <div className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
                   <VscSettings size={24} className='text-slate-50' />
-                  <span className='text-md font-bold text-slate-50'>Admin</span>
+                  <span className='hidden lg:block text-md font-bold text-slate-50'>Admin</span>
                 </div>
               </Link>
             </>
@@ -48,7 +48,7 @@ export const Header = () => {
               <Link to='/login'>
                 <button className='flex justify-center p-2 items-center gap-4 border-gray-100 hover:bg-cSecondary rounded-md cursor-pointer transition-colors duration-200'>
                   <RiLoginBoxFill size={24} className='text-slate-50' />
-                  <span className='text-md font-bold text-slate-50'>Login</span>
+                  <span className='hidden lg:block text-md font-bold text-slate-50'>Login</span>
                 </button>
               </Link>
             </>

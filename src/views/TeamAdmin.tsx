@@ -68,6 +68,8 @@ export const TeamAdmin = () => {
       await loadTeam();
       setIsLoading(false);
       toast.success(toastMsg);
+      await sleep(1000);
+      navigate('/admin');
     } catch {
       toast.error('Error while updating team');
       setIsLoading(false);
