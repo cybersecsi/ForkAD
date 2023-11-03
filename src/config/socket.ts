@@ -1,6 +1,6 @@
 import { ISocketConfig } from '@/types';
 
-const HOST = import.meta.env.VITE_BACKEND ?? 'http://localhost';
+const HOST = import.meta.env.VITE_BACKEND ?? '';
 
 export const SOCKET_CONFIG: ISocketConfig = {
   URL: HOST,
