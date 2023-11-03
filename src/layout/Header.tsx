@@ -4,23 +4,10 @@ import { useCtf } from '@/context';
 import { VscSettings } from 'react-icons/vsc';
 import { RiLoginBoxFill } from 'react-icons/ri';
 import { HiDocumentText } from 'react-icons/hi';
+import { Progress } from '@/components';
 
 export const Header = () => {
   const { isAdmin, ctfState, ctfConfig } = useCtf();
-  const [progress, setProgress] = useState<number>(0);
-
-  useEffect(() => {
-    const calcProgress = () => {
-      const current = Math.floor(new Date().getTime() / 1000);
-      const secondsPassed = current - ctfState.round_start - ctfConfig.round_time;
-      const percentage = (secondsPassed * 100) / ctfConfig.round_time;
-      setProgress(percentage);
-    };
-
-    calcProgress();
-    const interval = setInterval(calcProgress, 1000);
-    return () => clearInterval(interval);
-  }, [ctfState, ctfConfig]);
 
   return (
     <header className='h-20 fixed flex w-full items-center bg-cPrimary shadow-2xl drop-shadow-2xl z-10'>
@@ -33,11 +20,7 @@ export const Header = () => {
           </div>
         </div>
 
-        <progress
-          className='progress progress-info bg-cSecondary w-full h-6'
-          value={progress}
-          max='100'
-        ></progress>
+        <Progress state={ctfState} config={ctfConfig} className='hidden md:block' />
 
         <div className='flex gap-4 items-center justify-center'>
           {/* Rules */}

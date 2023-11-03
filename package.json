@@ -15,6 +15,7 @@
     "format": "prettier src --check --write && eslint src --fix"
   },
   "dependencies": {
+    "@uidotdev/usehooks": "^2.4.1",
     "axios": "^0.27.2",
     "daisyui": "^3.9.4",
     "react": "^18.2.0",

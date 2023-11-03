@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from 'react';
+import { useWindowSize } from '@uidotdev/usehooks';
+import { BREAKPOINTS } from '@/config';
 
 interface ProviderInterface {
   sidebarOpen: boolean;
@@ -8,7 +10,14 @@ interface ProviderInterface {
 const UIContext = createContext<ProviderInterface | null>(null);
 
 const UIProvider = ({ children }: any): any => {
+  const { width } = useWindowSize();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (width && width < BREAKPOINTS.lg) {
+      setIsSidebarOpen(false);
+    }
+  }, [width]);
 
   return (
     <UIContext.Provider
