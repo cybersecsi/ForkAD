@@ -44,12 +44,12 @@ const NoMatchElement = () => {
 const DefaultLayout = () => {
   const { isCtfStarted, isCtfLoading } = useCtf();
 
-  if (!isCtfStarted) {
-    return <NotStarted />;
-  }
-
   if (isCtfLoading) {
     return <Loading />;
+  }
+
+  if (!isCtfStarted) {
+    return <NotStarted />;
   }
 
   return (

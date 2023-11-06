@@ -76,7 +76,7 @@ const CtfProvider = ({ children }: any): any => {
     const isTeamsSet = ctfTeams.length > 0;
     const isTasksSet = ctfTasks.length > 0;
 
-    const valuesToCheck = [isCtfStarted, isConfigSet, isStateSet, isTeamsSet, isTasksSet];
+    const valuesToCheck = [isConfigSet, isStateSet, isTeamsSet, isTasksSet];
     const ctfReady = valuesToCheck.every((value: boolean) => value);
     setIsCtfLoading(!ctfReady);
   }, [ctfConfig, ctfState, ctfTeams, ctfTasks]);
