@@ -65,7 +65,6 @@ export const TeamAdmin = () => {
       }
       await sleep(500);
       const toastMsg = isEditMode ? 'Team correctly updated' : 'Team correctly created';
-      await loadTeam();
       setIsLoading(false);
       toast.success(toastMsg);
       await sleep(1000);
