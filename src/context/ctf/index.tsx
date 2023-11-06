@@ -31,6 +31,7 @@ interface ProviderInterface {
   liveEvents: ICtfFlagStolen[];
   // Global stuff
   isCtfStarted: boolean;
+  isCtfReady: boolean;
   isCtfLoading: boolean;
 }
 
@@ -58,6 +59,7 @@ const CtfContext = createContext<ProviderInterface | null>(null);
 
 const CtfProvider = ({ children }: any): any => {
   const [isCtfStarted, setIsCtfStarted] = useState<boolean>(false);
+  const [isCtfReady, setIsCtfReady] = useState<boolean>(false);
   const [isCtfLoading, setIsCtfLoading] = useState<boolean>(true);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const gameSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.GAME_NAMESPACE}`);
@@ -78,7 +80,8 @@ const CtfProvider = ({ children }: any): any => {
 
     const valuesToCheck = [isConfigSet, isStateSet, isTeamsSet, isTasksSet];
     const ctfReady = valuesToCheck.every((value: boolean) => value);
-    setIsCtfLoading(!ctfReady);
+    setIsCtfReady(!ctfReady);
+    setIsCtfLoading(false);
   }, [ctfConfig, ctfState, ctfTeams, ctfTasks]);
 
   const checkUser = async () => {
@@ -144,6 +147,7 @@ const CtfProvider = ({ children }: any): any => {
   return (
     <CtfContext.Provider
       value={{
+        isCtfReady: isCtfReady,
         isCtfStarted: isCtfStarted,
         isCtfLoading: isCtfLoading,
         isAdmin: isAdmin,
