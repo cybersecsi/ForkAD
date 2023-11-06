@@ -1,4 +1,4 @@
-export type { IApiConfig, ISocketConfig, IStatuses, CookieName } from '@/types/IConfig';
+export type { IApiConfig, ISocketConfig, IStatuses } from '@/types/IConfig';
 export type {
   ICtfConfig,
   ICtfScoreboard,
@@ -13,3 +13,6 @@ export type {
   IAdminTeamTaskLog,
 } from '@/types/IForcad';
 export type { ILoginReq } from '@/types/IApi';
+
+// Enums
+export { CookieName, CtfStatus } from '@/types/IConfig';

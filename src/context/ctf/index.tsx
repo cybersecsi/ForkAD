@@ -3,6 +3,7 @@ import { AdminRESTManagerInstance, PublicRESTManagerInstance } from '@/rest';
 import { io, Socket } from 'socket.io-client';
 import { isBefore } from 'date-fns';
 import {
+  CtfStatus,
   ICtfConfig,
   ICtfFlagStolen,
   ICtfScoreboard,
@@ -30,9 +31,7 @@ interface ProviderInterface {
   ctfTasks: ICtfTask[];
   liveEvents: ICtfFlagStolen[];
   // Global stuff
-  isCtfStarted: boolean;
-  isCtfReady: boolean;
-  isCtfLoading: boolean;
+  ctfStatus: CtfStatus;
 }
 
 const defaultCtfState: ICtfScoreboardState = {
@@ -58,9 +57,7 @@ const defaultCtfConfig: ICtfConfig = {
 const CtfContext = createContext<ProviderInterface | null>(null);
 
 const CtfProvider = ({ children }: any): any => {
-  const [isCtfStarted, setIsCtfStarted] = useState<boolean>(false);
-  const [isCtfReady, setIsCtfReady] = useState<boolean>(false);
-  const [isCtfLoading, setIsCtfLoading] = useState<boolean>(true);
+  const [ctfStatus, setCtfStatus] = useState<CtfStatus>(CtfStatus.LOADING);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const gameSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.GAME_NAMESPACE}`);
   const liveSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.LIVE_NAMESPACE}`);
@@ -74,14 +71,23 @@ const CtfProvider = ({ children }: any): any => {
 
   useEffect(() => {
     const isConfigSet = ctfConfig && !areObjectEquals(ctfConfig, defaultCtfConfig);
-    const isStateSet = ctfState && !areObjectEquals(ctfState, defaultCtfState);
+    const isStateSet = ctfState ? !areObjectEquals(ctfState, defaultCtfState) : false;
     const isTeamsSet = ctfTeams.length > 0;
     const isTasksSet = ctfTasks.length > 0;
 
     const valuesToCheck = [isConfigSet, isStateSet, isTeamsSet, isTasksSet];
     const ctfReady = valuesToCheck.every((value: boolean) => value);
-    setIsCtfReady(!ctfReady);
-    setIsCtfLoading(false);
+    const ctfStarted = ctfConfig && isBefore(new Date(ctfConfig.start_time), new Date());
+
+    console.log(ctfStarted);
+
+    if (isConfigSet && !ctfStarted) {
+      setCtfStatus(CtfStatus.WAITING);
+    } else if (ctfReady && ctfStarted) {
+      setCtfStatus(CtfStatus.RUNNING);
+    } else {
+      setCtfStatus(CtfStatus.LOADING);
+    }
   }, [ctfConfig, ctfState, ctfTeams, ctfTasks]);
 
   const checkUser = async () => {
@@ -95,7 +101,6 @@ const CtfProvider = ({ children }: any): any => {
 
   const getConfig = async () => {
     const res = await PublicRESTManagerInstance.getConfig();
-    setIsCtfStarted(isBefore(new Date(res.data.start_time), new Date()));
     setCtfConfig(res.data);
   };
 
@@ -107,10 +112,12 @@ const CtfProvider = ({ children }: any): any => {
     socketName === 'game' ? setIsGameSocketConnected(false) : setIsLiveSocketConnected(false);
   };
 
-  const onInitScoreboard = (value: { data: ICtfScoreboard }) => {
-    setCtfState(value.data.state);
-    setCtfTeams(value.data.teams);
-    setCtfTasks(value.data.tasks);
+  const onInitScoreboard = (value?: { data: ICtfScoreboard }) => {
+    if (value) {
+      setCtfState(value.data.state);
+      setCtfTeams(value.data.teams);
+      setCtfTasks(value.data.tasks);
+    }
   };
 
   const onUpdateScoreboard = (value: { data: ICtfScoreboardState }) => {
@@ -147,9 +154,7 @@ const CtfProvider = ({ children }: any): any => {
   return (
     <CtfContext.Provider
       value={{
-        isCtfReady: isCtfReady,
-        isCtfStarted: isCtfStarted,
-        isCtfLoading: isCtfLoading,
+        ctfStatus: ctfStatus,
         isAdmin: isAdmin,
         refreshUser: checkUser,
         ctfConfig: ctfConfig,
