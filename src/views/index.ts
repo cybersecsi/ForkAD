@@ -8,3 +8,4 @@ export { TeamTaskLog } from '@/views/TeamTaskLog';
 export { Rules } from '@/views/Rules';
 export { NoMatch } from '@/views/NoMatch';
 export { Error } from '@/views/Error';
+export { NotStarted } from '@/views/NotStarted';

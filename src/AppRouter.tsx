@@ -12,6 +12,7 @@ import {
   NoMatch,
   Error,
   Rules,
+  NotStarted,
 } from '@/views';
 import { ADMIN_REACT_ROUTES, PUBLIC_REACT_ROUTES } from '@/config';
 import { removeSlash } from '@/utils/helpers';
@@ -41,7 +42,11 @@ const NoMatchElement = () => {
 };
 
 const DefaultLayout = () => {
-  const { isCtfLoading } = useCtf();
+  const { isCtfStarted, isCtfLoading } = useCtf();
+
+  if (!isCtfStarted) {
+    return <NotStarted />;
+  }
 
   if (isCtfLoading) {
     return <Loading />;
