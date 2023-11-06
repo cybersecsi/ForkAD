@@ -19,6 +19,7 @@ import { removeSlash } from '@/utils/helpers';
 import { AdminRESTManagerInstance } from '@/rest';
 import { useCtf } from '@/context';
 import { Loading } from '@/components';
+import { CtfStatus } from '@/types';
 
 const userLoader = async (): Promise<boolean> => {
   try {
@@ -42,13 +43,13 @@ const NoMatchElement = () => {
 };
 
 const DefaultLayout = () => {
-  const { isCtfReady, isCtfStarted, isCtfLoading } = useCtf();
+  const { ctfStatus } = useCtf();
 
-  if (isCtfLoading) {
+  if (ctfStatus === CtfStatus.LOADING) {
     return <Loading />;
   }
 
-  if (!isCtfStarted || !isCtfReady) {
+  if (ctfStatus === CtfStatus.WAITING) {
     return <NotStarted />;
   }
 

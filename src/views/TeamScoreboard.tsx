@@ -53,13 +53,11 @@ export const TeamScoreboard = () => {
     const currentTeamTasks = teamTasks.filter(
       (task: IFullCtfTeamTask) => task.round === round.toString(),
     );
-    console.log(currentTeamTasks);
     const score = currentTeamTasks.reduce((prev: number, curr: ICtfTeamTask): number => {
       const slaPercentage = (curr.checks_passed * 100) / curr.checks;
       const taskPoints = (curr.score * slaPercentage) / 100;
       return taskPoints + prev;
     }, 0);
-    console.log(score);
     return score;
   };
 

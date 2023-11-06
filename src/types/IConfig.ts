@@ -2,6 +2,12 @@ export enum CookieName {
   sessionToken = 'session',
 }
 
+export enum CtfStatus {
+  LOADING = 'loading',
+  WAITING = 'waiting',
+  RUNNING = 'running',
+}
+
 export interface IApiConfig {
   BASE_API: string;
   PUBLIC_ROUTES: {
