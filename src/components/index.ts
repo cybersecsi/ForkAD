@@ -4,3 +4,4 @@ export { PasswordInput } from '@/components/PasswordInput';
 export { Progress } from '@/components/Progress';
 export { Live } from '@/components/Live';
 export { Legend } from '@/components/Legend';
+export { Countdown } from '@/components/Countdown';

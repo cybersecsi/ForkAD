@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { AdminRESTManagerInstance, PublicRESTManagerInstance } from '@/rest';
 import { io, Socket } from 'socket.io-client';
+import { isBefore } from 'date-fns';
 import {
   ICtfConfig,
   ICtfFlagStolen,
@@ -29,6 +30,7 @@ interface ProviderInterface {
   ctfTasks: ICtfTask[];
   liveEvents: ICtfFlagStolen[];
   // Global stuff
+  isCtfStarted: boolean;
   isCtfLoading: boolean;
 }
 
@@ -55,6 +57,7 @@ const defaultCtfConfig: ICtfConfig = {
 const CtfContext = createContext<ProviderInterface | null>(null);
 
 const CtfProvider = ({ children }: any): any => {
+  const [isCtfStarted, setIsCtfStarted] = useState<boolean>(false);
   const [isCtfLoading, setIsCtfLoading] = useState<boolean>(true);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const gameSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.GAME_NAMESPACE}`);
@@ -68,12 +71,12 @@ const CtfProvider = ({ children }: any): any => {
   const [liveEvents, setLiveEvents] = useState<ICtfFlagStolen[]>([]);
 
   useEffect(() => {
-    const isConfigSet = !areObjectEquals(ctfConfig, defaultCtfConfig);
-    const isStateSet = !areObjectEquals(ctfState, defaultCtfState);
+    const isConfigSet = ctfConfig && !areObjectEquals(ctfConfig, defaultCtfConfig);
+    const isStateSet = ctfState && !areObjectEquals(ctfState, defaultCtfState);
     const isTeamsSet = ctfTeams.length > 0;
     const isTasksSet = ctfTasks.length > 0;
 
-    const valuesToCheck = [isConfigSet, isStateSet, isTeamsSet, isTasksSet];
+    const valuesToCheck = [isCtfStarted, isConfigSet, isStateSet, isTeamsSet, isTasksSet];
     const ctfReady = valuesToCheck.every((value: boolean) => value);
     setIsCtfLoading(!ctfReady);
   }, [ctfConfig, ctfState, ctfTeams, ctfTasks]);
@@ -89,6 +92,7 @@ const CtfProvider = ({ children }: any): any => {
 
   const getConfig = async () => {
     const res = await PublicRESTManagerInstance.getConfig();
+    setIsCtfStarted(isBefore(new Date(res.data.start_time), new Date()));
     setCtfConfig(res.data);
   };
 
@@ -140,6 +144,7 @@ const CtfProvider = ({ children }: any): any => {
   return (
     <CtfContext.Provider
       value={{
+        isCtfStarted: isCtfStarted,
         isCtfLoading: isCtfLoading,
         isAdmin: isAdmin,
         refreshUser: checkUser,
