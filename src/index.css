@@ -70,4 +70,12 @@
   .custom-input-checkbox {
     @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2;
   }
+
+  .table thead {
+    @apply text-cTertiary uppercase;
+  }
+
+  .table tbody tr {
+    @apply last:border-b-0;
+  }
 }

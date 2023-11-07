@@ -1,7 +1,61 @@
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+
+const OptionalRules = () => {
+  const [md, setMd] = useState<string>('');
+
+  const loadOptionalRules = async () => {
+    try {
+      const file = await import('@/assets/rules/rules.md');
+      const response = await fetch(file.default);
+      const _md = await response.text();
+      setMd(_md);
+    } catch (e) {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    loadOptionalRules();
+  }, []);
+
+  return (
+    <ReactMarkdown
+      className='markdown-content'
+      remarkPlugins={[gfm]}
+      components={{
+        h1({ children }) {
+          return <h1 className='text-cTertiary font-semibold text-4xl mt-6'>{children}</h1>;
+        },
+        h2({ children }) {
+          return <h2 className='text-cTertiary text-3xl mt-6'>{children}</h2>;
+        },
+        h3({ children }) {
+          return <h2 className='text-cTertiary text-2xl mt-6'>{children}</h2>;
+        },
+        h4({ children }) {
+          return <h2 className='text-cTertiary text-xl mt-6'>{children}</h2>;
+        },
+        table({ children }) {
+          console.log();
+          return (
+            <table className='table w-auto bg-cSecondary shadow-xl mt-6 text-md mb-6'>
+              {children}
+            </table>
+          );
+        },
+      }}
+    >
+      {md}
+    </ReactMarkdown>
+  );
+};
+
 export const Rules = () => {
   return (
     <>
-      <h1 className='text-cTertiary text-4xl mb-6'>Rules</h1>
+      <h1 className='text-cTertiary font-semibold text-4xl mb-6'>Rules</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         <div className='text-emerald-400 flex flex-col gap-2 items-center bg-cSecondary rounded-md shadow-2xl drop-shadow-2xl p-3'>
           <h3 className='uppercase text-2xl font-semibold'>Teams are allowed to</h3>
@@ -35,6 +89,7 @@ export const Rules = () => {
           </code>
         </pre>
       </div>
+      <OptionalRules />
     </>
   );
 };

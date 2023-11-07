@@ -2,6 +2,7 @@ import { UserConfigExport, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
+import dynamicImport from 'vite-plugin-dynamic-import'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -9,7 +10,8 @@ export default defineConfig(({ command, mode }) => {
   const HOST = env.VITE_BACKEND
 
   let config: UserConfigExport = {
-    plugins: [react(), tsconfigPaths(), svgr()]
+    plugins: [react(), tsconfigPaths(), svgr(), dynamicImport()],
+    assetsInclude: ['**/*.md']
   }
 
   if (mode === 'development') {

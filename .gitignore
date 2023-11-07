@@ -17,3 +17,4 @@ node_modules
 .env.development
 .env.production
 dist
+src/assets/rules/rules.md
