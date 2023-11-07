@@ -79,8 +79,6 @@ const CtfProvider = ({ children }: any): any => {
     const ctfReady = valuesToCheck.every((value: boolean) => value);
     const ctfStarted = ctfConfig && isBefore(new Date(ctfConfig.start_time), new Date());
 
-    console.log(ctfStarted);
-
     if (isConfigSet && !ctfStarted) {
       setCtfStatus(CtfStatus.WAITING);
     } else if (ctfReady && ctfStarted) {

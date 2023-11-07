@@ -30,7 +30,7 @@ export const Scoreboard = () => {
       <div className='overflow-x-auto'>
         <table className='table bg-cSecondary shadow-xl mt-6 text-md'>
           {/* head */}
-          <thead className='text-cTertiary uppercase text-lg'>
+          <thead className='text-lg'>
             <tr>
               <th>#</th>
               <th>Team</th>

@@ -1,4 +1,5 @@
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 export const Footer = () => {
   return (
@@ -7,7 +8,7 @@ export const Footer = () => {
         {/* Left links */}
         <div className='flex justify-center md:justify-start col-span-3 md:col-span-1'>
           <a
-            className='ml-3 text-gray-500 hover:text-white'
+            className='ml-3 text-gray-500 hover:text-white transition-all duration-300'
             href='https://github.com/cybersecsi/ForkAD'
             target='_blank'
             rel='noopener noreferrer'
@@ -15,12 +16,12 @@ export const Footer = () => {
             <FaGithub size={24} />
           </a>
           <a
-            className='ml-3 text-gray-500 hover:text-white '
+            className='ml-3 text-gray-500 hover:text-white transition-all duration-300'
             href='https://twitter.com/cybersecsi'
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaTwitter size={24} />
+            <FaXTwitter size={24} />
           </a>
         </div>
         {/* SecSI credits */}
