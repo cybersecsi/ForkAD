@@ -50,7 +50,7 @@ class AdminRESTManager {
     taskId: number,
   ): Promise<AxiosResponse<IAdminTeamTaskLog[]>> {
     const res = await cookieHttp().get<IAdminTeamTaskLog[]>(
-      `${API_CONFIG.ADMIN_ROUTES.TEAMTASKS}/?team_id=${teamId}&task_id=${taskId}`,
+      `${API_CONFIG.ADMIN_ROUTES.TEAMTASKS}?team_id=${teamId}&task_id=${taskId}`,
     );
     return res;
   }
