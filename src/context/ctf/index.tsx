@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { AdminRESTManagerInstance, PublicRESTManagerInstance } from '@/rest';
-import { io, Socket } from 'socket.io-client';
+import { Socket } from 'socket.io-client';
 import { isBefore } from 'date-fns';
 import {
   CtfStatus,
@@ -11,7 +11,7 @@ import {
   ICtfTask,
   ICtfTeam,
 } from '@/types';
-import { SOCKET_CONFIG } from '@/config';
+import { gameSocket, liveSocket } from '@/config';
 import { areObjectEquals } from '@/utils/helpers';
 
 interface ProviderInterface {
@@ -59,8 +59,6 @@ const CtfContext = createContext<ProviderInterface | null>(null);
 const CtfProvider = ({ children }: any): any => {
   const [ctfStatus, setCtfStatus] = useState<CtfStatus>(CtfStatus.LOADING);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const gameSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.GAME_NAMESPACE}`);
-  const liveSocket = io(`${SOCKET_CONFIG.URL}${SOCKET_CONFIG.LIVE_NAMESPACE}`);
   const [isGameSocketConnected, setIsGameSocketConnected] = useState<boolean>(gameSocket.connected);
   const [isLiveSocketConnected, setIsLiveSocketConnected] = useState<boolean>(liveSocket.connected);
   const [ctfConfig, setCtfConfig] = useState<ICtfConfig>(defaultCtfConfig);
